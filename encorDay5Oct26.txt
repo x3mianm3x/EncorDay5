@@ -740,6 +740,8 @@ int gi 1
 @allRouters:
 config t
 cdp run
+int gi 1
+cdp enable
 int gi 2
 cdp enable
 no shut
