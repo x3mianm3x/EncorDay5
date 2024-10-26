@@ -89,12 +89,12 @@ interface ethernet 1/5-6
   switchport access vlan 50
   no shutdown
 !
-interface ___ __
-  _  ___________
-  ____________  _________  ___
-  ______  ___  ___
-   ________________  ___   ____
-     peer-ip ___________
+interface Nve 1
+  no shutdown  ___________
+   source-interface loopback 0____________  _________  ___
+  member vni 5000______  ___  ___
+   ingress-replication protocol static________________  ___   ____
+     peer-ip 10.10.10.10___________
 	 exit
 !	 
 show
@@ -388,7 +388,7 @@ config t
   int Ethernet1/2
     mpls ip
     mpls label protocol ldp
-    !mpls mtu override 1512 
+    !mpls mtu override 1512 --> gumagana lang sareal machine
 ***
 R3:P:
 config t
@@ -413,8 +413,8 @@ config t
     mpls label protocol ldp
     !mpls mtu override 1512
   int Ethernet1/2
-    ____ __
-    ____   ____  ________  ___
+     mpls ip
+    mpls label protocol ldp
     !mpls mtu override 1512
 ****
 R1-1:PEz
@@ -422,8 +422,8 @@ config t
  ip cef
  mpls ip
   int Ethernet1/0
-    ____ __
-    ____   ____  ________  ___
+  mpls ip
+  mpls label protocol ldp
     !mpls mtu override 1512
 
 How to check:
@@ -500,8 +500,8 @@ config t
 R1:pez
 config t
  ip vrf clientBDOb
-  rd __:__
-  __________   _____:___
+  rd 999:1
+  route-target 64999:1
  ip vrf clientBPIb
   rd 999:2
   route-target 64999:2
